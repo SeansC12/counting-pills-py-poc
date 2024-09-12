@@ -61,17 +61,6 @@ damaged_box_annotator = sv.BoxAnnotator(thickness=5, color=sv.Color.RED)
 #     for _, _, confidence, class_id, _, _ in counting_detections
 # ]
 
-# annotated_frame = counting_box_annotator.annotate(
-#     scene=image.copy(), detections=counting_detections
-# )
-
-# annotated_frame = damaged_box_annotator.annotate(
-#     scene=annotated_frame, detections=damaged_detections
-# )
-
-# sv.plot_image(image=annotated_frame, size=(16, 16))
-
-# The code above only shows the annotated_frame with damaged_box_annotator's damaged_detections and does not work. Write code to annotate both detections on the same image and plot it.
 annotated_frame = counting_box_annotator.annotate(
     scene=image.copy(), detections=counting_detections
 )
