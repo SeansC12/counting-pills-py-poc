@@ -6,8 +6,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-image = "pill.jpg"
-MODEL_ID = "06022023/4"
+IMAGE_PATH = "IMG_3101.jpg"
+
+image = IMAGE_PATH
+# MODEL_ID = "06022023/4"
+MODEL_ID = "pill-counter-zskvm/1"
 MODEL_ID_2 = "pill-inspection-od/2"
 
 config = InferenceConfiguration(confidence_threshold=0.5, iou_threshold=0.5)
@@ -47,7 +50,7 @@ for p in damaged_predictions["predictions"]:
 counting_detections = sv.Detections.from_inference(counting_predictions)
 damaged_detections = sv.Detections.from_inference(damaged_predictions)
 
-image = cv2.imread("pill.jpg")
+image = cv2.imread(IMAGE_PATH)
 
 counting_box_annotator = sv.BoxAnnotator(thickness=5, color=sv.Color.BLACK)
 damaged_box_annotator = sv.BoxAnnotator(thickness=5, color=sv.Color.RED)
@@ -60,6 +63,8 @@ damaged_box_annotator = sv.BoxAnnotator(thickness=5, color=sv.Color.RED)
 #     f"{counting_class_ids[class_id]} {confidence:0.2f}"
 #     for _, _, confidence, class_id, _, _ in counting_detections
 # ]
+
+print(damaged_detections)
 
 annotated_frame = counting_box_annotator.annotate(
     scene=image.copy(), detections=counting_detections
