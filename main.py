@@ -41,7 +41,7 @@ damaged_class_ids = {}
 counting_predictions = counting_client.infer(image)
 damaged_predictions = damaged_client.infer(image)
 
-print(type(counting_predictions))
+print(counting_predictions)
 
 for p in counting_predictions["predictions"]:
     class_id = p["class_id"]
