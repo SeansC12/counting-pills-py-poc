@@ -1,4 +1,5 @@
 import cv2
+import base64
 import supervision as sv
 from inference_sdk import InferenceConfiguration, InferenceHTTPClient
 import os
@@ -6,12 +7,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-IMAGE_PATH = "IMG_3101.jpg"
+IMAGE_PATH = "imgs/IMG_3100.jpg"
 
-image = IMAGE_PATH
+pre_image = cv2.imread(IMAGE_PATH)
+jpg_pre_img = cv2.imencode(".jpg", pre_image)
+image = base64.b64encode(jpg_pre_img[1]).decode('utf-8')
+
 # MODEL_ID = "06022023/4"
-MODEL_ID = "pill-counter-zskvm/1"
-MODEL_ID_2 = "pill-inspection-od/2"
+MODEL_ID = "pill-counter-trgoh/1"
+MODEL_ID_2 = "kkh7-pill-counter-damaged/1"
 
 config = InferenceConfiguration(confidence_threshold=0.5, iou_threshold=0.5)
 
@@ -36,6 +40,8 @@ damaged_class_ids = {}
 
 counting_predictions = counting_client.infer(image)
 damaged_predictions = damaged_client.infer(image)
+
+print(type(counting_predictions))
 
 for p in counting_predictions["predictions"]:
     class_id = p["class_id"]
