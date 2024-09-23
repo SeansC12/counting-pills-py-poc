@@ -56,5 +56,4 @@ def getInference(image):
 @cross_origin(send_wildcard=True)
 def index():
     counting_predictions = getInference(request.json["image"])
-    print(counting_predictions)
     return counting_predictions
