@@ -15,7 +15,7 @@ load_dotenv()
 MODEL_ID = "trgoh/1"
 MODEL_ID_2 = "kkh7-pill-counter-damaged/1"
 
-config = InferenceConfiguration(confidence_threshold=0.5, iou_threshold=0.5)
+config = InferenceConfiguration(confidence_threshold=0.5, iou_threshold=0.8)
 
 counting_client = InferenceHTTPClient(
     api_url=os.getenv("INFERENCE_SERVER_URL"),
