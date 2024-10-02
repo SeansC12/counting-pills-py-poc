@@ -32,6 +32,9 @@ def get_counting_inference(image):
 def index():
     image = request.json["image"]
 
+    if image == None or image == "":
+        return json.dumps({"error": "Something went wrong in image transmission."}), 400
+
     counting_predictions = get_counting_inference(image)
     blob_predictions = get_all_blob_coordinates(image)
     
