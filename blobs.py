@@ -49,10 +49,10 @@ def get_all_blob_coordinates(image):
     # Detect blobs (pills)
     keypoints = detector.detect(blurred_image)
 
-    coordinates_of_damaged = list()
+    coordinates_of_blobs = list()
 
     for kp in keypoints:
         x, y = kp.pt
-        coordinates_of_damaged.append((int(x), int(y)))
+        coordinates_of_blobs.append((int(x), int(y)))
 
-    return coordinates_of_damaged
+    return coordinates_of_blobs
