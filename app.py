@@ -39,8 +39,7 @@ def index():
     blob_predictions = get_all_blob_coordinates(image)
     
     # print(counting_predictions)
-    print(len(blob_predictions))
 
-    final_pill_dict = generate_final_pill_dict(counting_predictions["predictions"], blob_predictions, 5, 0.1)
+    final_pill_dict = generate_final_pill_dict(counting_predictions["predictions"], blob_predictions, 10, 300)
 
     return final_pill_dict
