@@ -40,6 +40,6 @@ def index():
     
     # print(counting_predictions)
 
-    final_pill_dict = generate_final_pill_dict(counting_predictions["predictions"], blob_predictions, 10, 300)
+    final_pill_dict = generate_final_pill_dict(counting_predictions["predictions"], blob_predictions, 10, 1)
 
     return final_pill_dict
