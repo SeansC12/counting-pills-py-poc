@@ -1,16 +1,10 @@
 import cv2
 import numpy as np
-import base64
-
-def readb64(uri):
-    encoded_data = uri.split(',')[1]
-    nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    return img
+from helpers import convert_b64_to_image
 
 def get_all_blob_coordinates(image):
     # Load the image
-    image = readb64(image)
+    image = convert_b64_to_image(image)
 
     brightness = -100
     contrast = 100
@@ -28,7 +22,7 @@ def get_all_blob_coordinates(image):
     thresh = cv2.inRange(image, lower, upper)
 
     # apply morphology
-    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (20,20))
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
     morph = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
 
     # Set up the blob detector with parameters tuned for pill detection

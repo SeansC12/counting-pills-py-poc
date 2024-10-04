@@ -1,8 +1,10 @@
 import numpy as np
 from scipy import stats
+from colour import find_damaged_pills_by_colour
 
-# Blue: Area
-# Red: Difference between blob and trgoh detection
+# (0) Red: Difference between blob and trgoh detection
+# (1) Blue: Area
+# (2) Yellow: Colour
 
 def find_damaged_pills_by_difference(counting_predictions, blob_predictions, distance_betw_trgoh_and_blob_max): # Finding anomalous pills where trgoh does not detect it while blob detection does
     # For each blob_prediction, find the nearest counting_prediction based on their x and y value
@@ -69,12 +71,16 @@ def find_damaged_pills_by_area_z_score(counting_predictions, threshold):
             counting_prediction["damaged_index"] = 1
             counting_prediction["damaged_signature"] = "Area too different from the mode (by z_score outliers)."
 
-def generate_final_pill_dict(counting_predictions, blob_predictions, distance_betw_trgoh_and_blob_max, area_threshold):
+def generate_final_pill_dict(counting_predictions, blob_predictions, distance_betw_trgoh_and_blob_max, area_threshold, image):
     for counting_prediction in counting_predictions:
         counting_prediction["is_damaged"] = False
         counting_prediction["is_added"] = False
         counting_prediction["damaged_signature"] = "Healthy"
         counting_prediction["damaged_index"] = -1
+    
     find_damaged_pills_by_difference(counting_predictions, blob_predictions, distance_betw_trgoh_and_blob_max)
+    
     find_damaged_pills_by_area(counting_predictions, 300)
+
+    find_damaged_pills_by_colour(counting_predictions, image)
     return counting_predictions
