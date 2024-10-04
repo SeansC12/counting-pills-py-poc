@@ -34,7 +34,7 @@ def find_damaged_pills_by_area(counting_predictions, area_threshold):
     ROUND_BASE = 5
     areas = list()
     areas_rounded = list()
-    # Calculate median area of counting_predictions
+    # Calculate mode area of counting_predictions by rounding it off
     for counting_prediction in counting_predictions:
         if counting_prediction["is_added"]: continue
         area = counting_prediction["width"] * counting_prediction["height"]
