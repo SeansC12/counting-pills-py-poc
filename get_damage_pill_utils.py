@@ -40,7 +40,7 @@ def find_damaged_pills_by_area(counting_predictions, area_threshold):
         area = counting_prediction["width"] * counting_prediction["height"]
         areas.append(area)
         areas_rounded.append(ROUND_BASE * round(area / ROUND_BASE))
-
+    
     mode = stats.mode(areas_rounded)
 
     for counting_prediction in counting_predictions:
