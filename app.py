@@ -43,3 +43,6 @@ def index():
     final_pill_dict = generate_final_pill_dict(counting_predictions["predictions"], blob_predictions, 50, 1, image)
 
     return final_pill_dict
+
+if __name__=='__main__':
+    app.run(debug=True, host='0.0.0.0', port=5001)
