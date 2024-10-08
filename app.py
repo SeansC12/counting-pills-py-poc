@@ -15,7 +15,7 @@ load_dotenv()
 # Counting model config
 MODEL_ID = "trgoh/1"
 config = InferenceConfiguration(confidence_threshold=0.5, iou_threshold=0.8)
-counting_client = InferenceHTTPClient("http://inference-server:9001",
+counting_client = InferenceHTTPClient(api_url=os.getenv("INFERENCE_SERVER_URL"),
     api_key=os.getenv("ROBOFLOW_API_KEY"),
 )
 counting_client.configure(config)
