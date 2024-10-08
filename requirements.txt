@@ -20,7 +20,7 @@ frozenlist==1.4.1
 idna==3.10
 importlib_metadata==8.5.0
 importlib_resources==6.4.5
-inference-sdk==0.20.1
+inference-sdk==0.22.2
 itsdangerous==2.2.0
 Jinja2==3.1.4
 kiwisolver==1.4.7
